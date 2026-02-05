@@ -79,8 +79,10 @@ seed = st.number_input("Seed (opcional)", value=12345)
 if st.button("🎨 Generar imagen"):
     with st.spinner("Generando imagen ultra realista..."):
         client = InferenceClient(
-            model="stabilityai/stable-diffusion-xl-base-1.0"
-        )
+    model="stabilityai/stable-diffusion-xl-base-1.0",
+    token=st.secrets["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"]
+)
+
 
         image = client.text_to_image(
             prompt=final_prompt,
