@@ -78,23 +78,22 @@ seed = st.number_input("Seed (opcional)", value=12345)
 # ---------- GENERACIÓN ----------
 if st.button("🎨 Generar imagen"):
     with st.spinner("Generando imagen ultra realista..."):
-       client = InferenceClient(
-    model="stabilityai/sdxl-turbo",
-    token=st.secrets["HUGGINGFACE_TOKEN"]
-)
-
-
+        client = InferenceClient(
+            model="stabilityai/sdxl-turbo",
+            token=st.secrets["HUGGINGFACE_TOKEN"]
+        )
 
         image = client.text_to_image(
             prompt=final_prompt,
             negative_prompt=negative_prompt,
             width=1024,
             height=1024,
-            guidance_scale=8.5,
-            num_inference_steps=50,
+            guidance_scale=7.0,
+            num_inference_steps=20,
             seed=seed
         )
 
         st.image(image, caption="Imagen generada", use_column_width=True)
         image.save("imagen_generada.png")
         st.success("Imagen guardada como imagen_generada.png")
+
